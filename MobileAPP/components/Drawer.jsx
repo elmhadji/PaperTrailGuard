@@ -1,17 +1,39 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, } from 'react-native'
 import { createDrawerNavigator  } from '@react-navigation/drawer'
 import CustomeDrawerContent from './CustomeDrawerContent'
-import HomeScreen from './HomeScreen'
-import SettingsScreen from './SettingsScreen'
+import CodeGenerator from './Pages/CodeGenerator'
+import CodeReader from './Pages/CodeReader'
 
-const Drawer = () => {
+
+const Drawer = ({changeVisibility}) => {
   const Drawer = createDrawerNavigator()
+
   
     return (
       <Drawer.Navigator
-        drawerContent={(props)=><CustomeDrawerContent {...props}/>} >
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Setting" component={SettingsScreen} />
+        drawerContent={
+              (props)=>
+                <CustomeDrawerContent 
+                  {...props} 
+                  changeVisibility={changeVisibility}
+                  />
+            } 
+        screenOptions={{
+			headerStyle:{
+				backgroundColor:'#2771FF',
+			},
+			headerTintColor:'#fff',
+		}}
+        >
+        <Drawer.Screen 
+			name="QR Code Reader" 
+			component={CodeReader} 
+            options={{unmountOnBlur:true}}
+			/>
+        <Drawer.Screen 
+			name="QR Code Generator" 
+			component={CodeGenerator} 
+			/>
       </Drawer.Navigator>
     )
 };

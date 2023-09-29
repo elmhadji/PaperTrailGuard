@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const SettingsScreen = () => {
+const CodeGenerator = () => {
   return (
 	<View>
-	  <Text>SettingsScreen</Text>
+	  <Text>Code Generator Screen</Text>
 	</View>
   )
 }
 
-export default SettingsScreen
+export default CodeGenerator
 
 const styles = StyleSheet.create({})

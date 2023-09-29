@@ -1,20 +1,27 @@
 import { 
 	DrawerContentScrollView,  
 	DrawerItem 
-} from '@react-navigation/drawer';
+} from '@react-navigation/drawer'
 import { 
 	Image, 
-	Text,
 	View ,
-} from 'react-native';
+} from 'react-native'
 import * as Clipboard from 'expo-clipboard'
-import Label from './Label';
+import Label from './Label'
+
 
 const CustomDrawerContent = (props) => {
-    const image = require('../assets/logo.png');
+    const image = require('../assets/logo.png')
+
 
     return (
-			<DrawerContentScrollView {...props} contentContainerStyle={{justifyContent:'space-between',flex:1}}>
+			<DrawerContentScrollView 
+				{...props} 
+				contentContainerStyle={{
+					justifyContent:'space-between',
+					flex:1,
+				}}
+				>
 				<View >
 					<DrawerItem
 						label={() => {
@@ -27,16 +34,20 @@ const CustomDrawerContent = (props) => {
 						/>
 					<DrawerItem
 						label={()=><Label name='camera' label='Scane'/>}
-						onPress={()=>props.navigation.navigate('Home')}
+						onPress={()=>props.navigation.navigate('QR Code Reader')}
 						/>
 					<DrawerItem
 						label={()=><Label name='qrcode' label='Generate'/>}
-						onPress={()=>props.navigation.navigate('Setting')}
+						onPress={()=>props.navigation.navigate('QR Code Generator')}
 						/>
 				</View>
 				<DrawerItem
 					label={()=> <Label	name='envelope' label='Bahrib665@gmail.com'/>}
-					onPress={()=>Clipboard.setStringAsync('Bahrib665@gmail.com')}
+					onPress={()=>{
+						Clipboard.setStringAsync('Bahrib665@gmail.com')
+						props.changeVisibility()
+					}
+				}
 				/>
 			</DrawerContentScrollView>
 

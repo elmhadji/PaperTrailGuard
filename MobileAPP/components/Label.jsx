@@ -1,9 +1,9 @@
-import IonIcons from '@expo/vector-icons/FontAwesome'
 import { 
 	StyleSheet, 
 	Text, 
 	View 
 } from 'react-native'
+import IonIcons from '@expo/vector-icons/FontAwesome'
 
 
 const Label = (props) => {
