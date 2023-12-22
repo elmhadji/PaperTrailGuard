@@ -6,7 +6,7 @@ from Crypto.Util.Padding import pad, unpad
 from Crypto.Random import get_random_bytes
 import json
 
-data = b"this is a highly secret message please don't tell anyone save it with you life"
+data = b"this is a highly secret message please don't tell anyone save it with you life got it ?"
 directory = os.path.join(os.getcwd(), 'DesktopAPP')
 
 # Check if the key is loaded if not then create it 
