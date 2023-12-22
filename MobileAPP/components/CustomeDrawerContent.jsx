@@ -1,14 +1,7 @@
-import { 
-	DrawerContentScrollView,  
-	DrawerItem 
-} from '@react-navigation/drawer'
-import { 
-	Image, 
-	View ,
-} from 'react-native'
+import { DrawerContentScrollView,DrawerItem} from '@react-navigation/drawer'
+import { Image,View ,} from 'react-native'
 import * as Clipboard from 'expo-clipboard'
 import Label from './Label'
-
 
 const CustomDrawerContent = (props) => {
     const image = require('../assets/logo.png')

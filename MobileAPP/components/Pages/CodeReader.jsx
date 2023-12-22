@@ -1,98 +1,101 @@
-import { 
-	StyleSheet, 
-	Text, 
-	View,
-	Pressable
-} from 'react-native'
+import { StyleSheet,Text,View,Pressable,	Alert,} from 'react-native'
 import {Camera} from 'expo-camera'
 import {BarCodeScanner} from 'expo-barcode-scanner' 
-import IonIcons from '@expo/vector-icons/FontAwesome'
+import ButtonIcon from '../ButtonIcon'
+import decrypt from '../../functions/decryption'
+import { useState } from 'react'
+import * as Clipboard from 'expo-clipboard'
+import * as ImagePicker from 'expo-image-picker'
 
 const CodeReader = () => {
 	const [status ,requestPermission] = Camera.useCameraPermissions()
+	const [isShowing ,setIsShowing] = useState(false)
 	
+	const pickImage = async ()=>{
+		const image = await ImagePicker.launchImageLibraryAsync({
+
+				mediaTypes: ImagePicker.MediaTypeOptions.Images,
+				allowsMultipleSelection:false,
+				allowsEditing:true,
+				quality:1,
+				barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
+			})
+
+		if (! image.canceled){
+
+			console.log('Image selected')
+			console.log('the path of image is : ',image.assets[0].uri)
+			//TODO: the problem is in he URI (not accepted by the barcode scanner) change to the rn-qr-generator
+			const scannedResult = await BarCodeScanner.scanFromURLAsync(image.assets[0].uri , [BarCodeScanner.Constants.BarCodeType.qr])
+			console.log('QRCode: ',scannedResult)
+		}
+	}
+
 	const handelOnScanned=({type,data})=>{
-		alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+		if (!isShowing){
+			const result = decrypt(data)
+			Alert.alert(
+					'QR Code Scanned',
+					`Result :${result} `,
+					[
+						{
+							text:'Copy Text',
+							onPress: ()=>{
+								Clipboard.setStringAsync(result)
+								setIsShowing(previousStat =>!previousStat)
+							} 
+						},
+						{
+							text:'OK',
+							onPress:()=>setIsShowing(previousStat =>!previousStat)
+						},
+					]
+				)
+			setIsShowing(previousStat =>!previousStat)
+		}
 	}
 
 	return (
-		<View
-			style={{
-				justifyContent:'center',
-				alignItems:'center',
-				flex:1				
-			}}
-			>
-				{status && !status.granted &&(
-					<View>
-							<Pressable 
-								onPress={requestPermission}
-								style={{
-									backgroundColor:'blue',
-									borderRadius:15,
-									padding:20
-								}}
-								>
-								<Text
-									style={{
-										color:'#fff',
-										fontSize:15
-									}}
-									>
-									We need your permission to show the camera
-								</Text>
-							</Pressable>
-					</View>
-				)}
-				{ status && status.granted &&(
-				<View 
-					style={{
-						flex:1,
-					
-					}}
-					>
+		<View style={styles.center}>
+			{status && !status.granted &&(
+				<View>
+					<Pressable onPress={requestPermission} style={{	backgroundColor:'blue',borderRadius:15,padding:20}}>
+						<Text style={{color:'#fff',fontSize:15}}>
+							We need your permission to show the camera
+						</Text>
+					</Pressable>
+				</View>
+			)}
+			{ status && status.granted &&(
+				<View style={{flex:1}}>
 					<Camera
 						barCodeScannerSettings={{
 							barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
 						}}
 						onBarCodeScanned={handelOnScanned}
-						style={{
-							height:570,
-							width:400,
-						}}
+						style={styles.camera}
 						/>
-					<View
-						style={{
-							flex:1,
-							justifyContent:'center',
-							alignItems:'center'
-
-						}}
-						>
-						<Pressable
-							style={{
-								justifyContent:'center',
-								alignItems:'center',
-								paddingHorizontal:50,
-								paddingVertical:10,
-								backgroundColor:'#D9D9D9',
-								borderRadius:17,
-								width:165,
-								height:65,
-							}}
-							>
-							<IonIcons 
-								name='image'
-								size={30}
-								/>
-						</Pressable>
+					<View style={styles.center}>
+						<ButtonIcon
+							onPress={pickImage}
+							/>
 					</View>
 				</View>
-			)
-		}
-		
+			)}
 		</View>
 	)
 }
 
 export default CodeReader
+
+const styles = StyleSheet.create({
+	center:{
+		flex:1,
+		justifyContent:'center',
+		alignItems:'center'
+	},
+	camera:{
+		height:570,
+		width:400,
+	}
+})
