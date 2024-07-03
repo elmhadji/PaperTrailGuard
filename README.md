@@ -1,7 +1,7 @@
 # PaperTrailGuard
 
 ## Description
-PaperTrailGuard is a dual-platform solution for reducing paper fraud. It includes a Python desktop app to generate QR codes for documents, and a React Native mobile app to scan and verify these codes.
+PaperTrailGuard is a dual-platform solution for reducing paper fraud. It includes a Python desktop app (or Script) to generate QR codes for documents, and a React Native mobile app to scan and verify these codes.
 
 ## Installation
 
@@ -17,15 +17,13 @@ PaperTrailGuard is a dual-platform solution for reducing paper fraud. It include
 ## Usage
 
 ### Desktop App
-- Run the Python script.
+- Run the Python (or script) desktop application .
 - Generate QR codes for your documents.
 
 ### Mobile App
 - Open the app on your mobile device.
 - Scan QR codes to verify document authenticity.
 
-## Contributing
-Please read `CONTRIBUTING.md` for details on our code of conduct, and the process for submitting pull requests.
 
 ## License
 This project is licensed under the MIT License - see the `LICENSE.md` file for details.
