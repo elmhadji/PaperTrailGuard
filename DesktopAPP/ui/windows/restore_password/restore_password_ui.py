@@ -55,8 +55,9 @@ class Ui_ForgetPassowrd(object):
 
         self.lineEdit = QLineEdit(self.centralwidget)
         self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setEnabled(False)
+        self.lineEdit.setEnabled(True)
         self.lineEdit.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.lineEdit.setReadOnly(True)
 
         self.formLayout.setWidget(0, QFormLayout.FieldRole, self.lineEdit)
 
@@ -67,8 +68,9 @@ class Ui_ForgetPassowrd(object):
 
         self.lineEdit_2 = QLineEdit(self.centralwidget)
         self.lineEdit_2.setObjectName(u"lineEdit_2")
-        self.lineEdit_2.setEnabled(False)
+        self.lineEdit_2.setEnabled(True)
         self.lineEdit_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.lineEdit_2.setReadOnly(True)
 
         self.formLayout.setWidget(1, QFormLayout.FieldRole, self.lineEdit_2)
 
@@ -77,10 +79,10 @@ class Ui_ForgetPassowrd(object):
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
+        self.return_button = QPushButton(self.centralwidget)
+        self.return_button.setObjectName(u"return_button")
 
-        self.horizontalLayout.addWidget(self.pushButton)
+        self.horizontalLayout.addWidget(self.return_button)
 
         self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
@@ -110,6 +112,6 @@ class Ui_ForgetPassowrd(object):
         self.lineEdit.setText(QCoreApplication.translate("ForgetPassowrd", u"Admin", None))
         self.label_3.setText(QCoreApplication.translate("ForgetPassowrd", u"Password", None))
         self.lineEdit_2.setText(QCoreApplication.translate("ForgetPassowrd", u"Admin", None))
-        self.pushButton.setText(QCoreApplication.translate("ForgetPassowrd", u"Return", None))
+        self.return_button.setText(QCoreApplication.translate("ForgetPassowrd", u"Return", None))
     # retranslateUi
 
