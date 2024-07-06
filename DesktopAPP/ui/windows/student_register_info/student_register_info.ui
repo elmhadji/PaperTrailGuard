@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>846</width>
-    <height>454</height>
+    <width>744</width>
+    <height>450</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="student_picture">
         <property name="text">
          <string>Profile</string>
         </property>
@@ -40,7 +40,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit">
+         <widget class="QLineEdit" name="name_input">
           <property name="text">
            <string>TextLabel</string>
           </property>
@@ -54,7 +54,7 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QDateEdit" name="dateEdit"/>
+         <widget class="QDateEdit" name="birthday_input"/>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_4">
@@ -64,7 +64,7 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QLineEdit" name="lineEdit_2">
+         <widget class="QLineEdit" name="birth_place_input">
           <property name="text">
            <string/>
           </property>
@@ -91,7 +91,7 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEdit_4">
+           <widget class="QLineEdit" name="university_input">
             <property name="text">
              <string/>
             </property>
@@ -105,7 +105,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEdit_3">
+           <widget class="QLineEdit" name="speciality_input">
             <property name="text">
              <string/>
             </property>
@@ -126,7 +126,7 @@
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QLineEdit" name="lineEdit_6">
+           <widget class="QLineEdit" name="sector_input">
             <property name="text">
              <string/>
             </property>
@@ -140,14 +140,14 @@
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QLineEdit" name="lineEdit_7">
+           <widget class="QLineEdit" name="departement_input">
             <property name="text">
              <string/>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="lineEdit_5">
+           <widget class="QLineEdit" name="domain_input">
             <property name="text">
              <string/>
             </property>
@@ -168,7 +168,7 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEdit_8">
+           <widget class="QLineEdit" name="degree_input">
             <property name="text">
              <string/>
             </property>
@@ -182,7 +182,7 @@
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEdit_9">
+           <widget class="QLineEdit" name="preparation_year_input">
             <property name="text">
              <string/>
             </property>
@@ -196,7 +196,7 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="lineEdit_10">
+           <widget class="QLineEdit" name="registration_year">
             <property name="text">
              <string/>
             </property>
@@ -210,7 +210,7 @@
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QLineEdit" name="lineEdit_11">
+           <widget class="QLineEdit" name="delebration_year_input">
             <property name="text">
              <string/>
             </property>
@@ -224,7 +224,7 @@
            </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QLineEdit" name="lineEdit_12">
+           <widget class="QLineEdit" name="note_input">
             <property name="text">
              <string/>
             </property>
@@ -263,21 +263,21 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="select_picture_button">
           <property name="text">
            <string>Select Image</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="reset_button">
           <property name="text">
            <string>Reset</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="register_button">
           <property name="text">
            <string>Register</string>
           </property>
