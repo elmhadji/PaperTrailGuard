@@ -28,17 +28,17 @@ class Ui_CardStudentInfo(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.label = QLabel(CardStudentInfo)
-        self.label.setObjectName(u"label")
-        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.profile_image_label = QLabel(CardStudentInfo)
+        self.profile_image_label.setObjectName(u"profile_image_label")
+        self.profile_image_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.verticalLayout.addWidget(self.label)
+        self.verticalLayout.addWidget(self.profile_image_label)
 
-        self.label_2 = QLabel(CardStudentInfo)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.degree_type_label = QLabel(CardStudentInfo)
+        self.degree_type_label.setObjectName(u"degree_type_label")
+        self.degree_type_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.verticalLayout.addWidget(self.label_2)
+        self.verticalLayout.addWidget(self.degree_type_label)
 
         self.verticalLayout.setStretch(0, 1)
 
@@ -53,30 +53,30 @@ class Ui_CardStudentInfo(object):
 
         self.gridLayout.addWidget(self.label_3, 0, 0, 1, 1)
 
-        self.label_6 = QLabel(CardStudentInfo)
-        self.label_6.setObjectName(u"label_6")
+        self.name_label = QLabel(CardStudentInfo)
+        self.name_label.setObjectName(u"name_label")
 
-        self.gridLayout.addWidget(self.label_6, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.name_label, 0, 1, 1, 1)
 
         self.label_4 = QLabel(CardStudentInfo)
         self.label_4.setObjectName(u"label_4")
 
         self.gridLayout.addWidget(self.label_4, 1, 0, 1, 1)
 
-        self.label_7 = QLabel(CardStudentInfo)
-        self.label_7.setObjectName(u"label_7")
+        self.birthday_label = QLabel(CardStudentInfo)
+        self.birthday_label.setObjectName(u"birthday_label")
 
-        self.gridLayout.addWidget(self.label_7, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.birthday_label, 1, 1, 1, 1)
 
         self.label_5 = QLabel(CardStudentInfo)
         self.label_5.setObjectName(u"label_5")
 
         self.gridLayout.addWidget(self.label_5, 2, 0, 1, 1)
 
-        self.label_8 = QLabel(CardStudentInfo)
-        self.label_8.setObjectName(u"label_8")
+        self.birth_place_label = QLabel(CardStudentInfo)
+        self.birth_place_label.setObjectName(u"birth_place_label")
 
-        self.gridLayout.addWidget(self.label_8, 2, 1, 1, 1)
+        self.gridLayout.addWidget(self.birth_place_label, 2, 1, 1, 1)
 
 
         self.verticalLayout_2.addLayout(self.gridLayout)
@@ -87,20 +87,20 @@ class Ui_CardStudentInfo(object):
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.pushButton = QPushButton(CardStudentInfo)
-        self.pushButton.setObjectName(u"pushButton")
+        self.print_pdf_button = QPushButton(CardStudentInfo)
+        self.print_pdf_button.setObjectName(u"print_pdf_button")
 
-        self.horizontalLayout.addWidget(self.pushButton)
+        self.horizontalLayout.addWidget(self.print_pdf_button)
 
-        self.pushButton_2 = QPushButton(CardStudentInfo)
-        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.edit_button = QPushButton(CardStudentInfo)
+        self.edit_button.setObjectName(u"edit_button")
 
-        self.horizontalLayout.addWidget(self.pushButton_2)
+        self.horizontalLayout.addWidget(self.edit_button)
 
-        self.pushButton_3 = QPushButton(CardStudentInfo)
-        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.delete_button = QPushButton(CardStudentInfo)
+        self.delete_button.setObjectName(u"delete_button")
 
-        self.horizontalLayout.addWidget(self.pushButton_3)
+        self.horizontalLayout.addWidget(self.delete_button)
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout)
@@ -119,16 +119,16 @@ class Ui_CardStudentInfo(object):
 
     def retranslateUi(self, CardStudentInfo):
         CardStudentInfo.setWindowTitle(QCoreApplication.translate("CardStudentInfo", u"Form", None))
-        self.label.setText(QCoreApplication.translate("CardStudentInfo", u"Profile Image", None))
-        self.label_2.setText(QCoreApplication.translate("CardStudentInfo", u"Degree type", None))
-        self.label_3.setText(QCoreApplication.translate("CardStudentInfo", u"TextLabel", None))
-        self.label_6.setText(QCoreApplication.translate("CardStudentInfo", u"TextLabel", None))
-        self.label_4.setText(QCoreApplication.translate("CardStudentInfo", u"TextLabel", None))
-        self.label_7.setText(QCoreApplication.translate("CardStudentInfo", u"TextLabel", None))
-        self.label_5.setText(QCoreApplication.translate("CardStudentInfo", u"TextLabel", None))
-        self.label_8.setText(QCoreApplication.translate("CardStudentInfo", u"TextLabel", None))
-        self.pushButton.setText("")
-        self.pushButton_2.setText("")
-        self.pushButton_3.setText("")
+        self.profile_image_label.setText(QCoreApplication.translate("CardStudentInfo", u"Profile Image", None))
+        self.degree_type_label.setText(QCoreApplication.translate("CardStudentInfo", u"Degree type", None))
+        self.label_3.setText(QCoreApplication.translate("CardStudentInfo", u"Name", None))
+        self.name_label.setText("")
+        self.label_4.setText(QCoreApplication.translate("CardStudentInfo", u"Birthday", None))
+        self.birthday_label.setText("")
+        self.label_5.setText(QCoreApplication.translate("CardStudentInfo", u"Birth Place", None))
+        self.birth_place_label.setText("")
+        self.print_pdf_button.setText(QCoreApplication.translate("CardStudentInfo", u"print", None))
+        self.edit_button.setText(QCoreApplication.translate("CardStudentInfo", u"edit", None))
+        self.delete_button.setText(QCoreApplication.translate("CardStudentInfo", u"delete", None))
     # retranslateUi
 

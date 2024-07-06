@@ -17,7 +17,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="profile_image_label">
        <property name="text">
         <string>Profile Image</string>
        </property>
@@ -27,7 +27,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="degree_type_label">
        <property name="text">
         <string>Degree type</string>
        </property>
@@ -45,42 +45,42 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>TextLabel</string>
+          <string>Name</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLabel" name="label_6">
+        <widget class="QLabel" name="name_label">
          <property name="text">
-          <string>TextLabel</string>
+          <string/>
          </property>
         </widget>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_4">
          <property name="text">
-          <string>TextLabel</string>
+          <string>Birthday</string>
          </property>
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLabel" name="label_7">
+        <widget class="QLabel" name="birthday_label">
          <property name="text">
-          <string>TextLabel</string>
+          <string/>
          </property>
         </widget>
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_5">
          <property name="text">
-          <string>TextLabel</string>
+          <string>Birth Place</string>
          </property>
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QLabel" name="label_8">
+        <widget class="QLabel" name="birth_place_label">
          <property name="text">
-          <string>TextLabel</string>
+          <string/>
          </property>
         </widget>
        </item>
@@ -102,23 +102,23 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="print_pdf_button">
          <property name="text">
-          <string/>
+          <string>print</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="edit_button">
          <property name="text">
-          <string/>
+          <string>edit</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="delete_button">
          <property name="text">
-          <string/>
+          <string>delete</string>
          </property>
         </widget>
        </item>
