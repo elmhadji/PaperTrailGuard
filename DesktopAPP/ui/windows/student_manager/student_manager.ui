@@ -14,35 +14,51 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>TextLabel</string>
+           <string>Degree</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="comboBox"/>
+         <widget class="QComboBox" name="degree_combo_box">
+          <item>
+           <property name="text">
+            <string>All</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Bachelor</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Master</string>
+           </property>
+          </item>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>TextLabel</string>
+           <string>Name</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit"/>
+         <widget class="QLineEdit" name="name_input"/>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="search_button">
           <property name="text">
-           <string>PushButton</string>
+           <string>search</string>
           </property>
          </widget>
         </item>
@@ -62,27 +78,27 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="register_button">
         <property name="text">
-         <string>PushButton</string>
+         <string>Register</string>
         </property>
        </widget>
       </item>
      </layout>
     </item>
-    <item>
+    <item row="1" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QCheckBox" name="checkBox">
+       <widget class="QCheckBox" name="selected_all_checkBox">
         <property name="text">
-         <string>CheckBox</string>
+         <string/>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="delete_selected_button">
         <property name="text">
-         <string>PushButton</string>
+         <string>Delete Selected</string>
         </property>
        </widget>
       </item>
@@ -101,7 +117,7 @@
       </item>
      </layout>
     </item>
-    <item>
+    <item row="2" column="0">
      <widget class="QFrame" name="frame">
       <property name="frameShape">
        <enum>QFrame::Shape::StyledPanel</enum>
@@ -111,20 +127,25 @@
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
-        <widget class="QScrollArea" name="scrollArea">
-         <property name="widgetResizable">
+        <widget class="QListWidget" name="student_card_info_grid">
+         <property name="movement">
+          <enum>QListView::Movement::Snap</enum>
+         </property>
+         <property name="flow">
+          <enum>QListView::Flow::LeftToRight</enum>
+         </property>
+         <property name="isWrapping" stdset="0">
           <bool>true</bool>
          </property>
-         <widget class="QWidget" name="scrollAreaWidgetContents">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>739</width>
-            <height>421</height>
-           </rect>
-          </property>
-         </widget>
+         <property name="resizeMode">
+          <enum>QListView::ResizeMode::Adjust</enum>
+         </property>
+         <property name="layoutMode">
+          <enum>QListView::LayoutMode::Batched</enum>
+         </property>
+         <property name="viewMode">
+          <enum>QListView::ViewMode::ListMode</enum>
+         </property>
         </widget>
        </item>
       </layout>
