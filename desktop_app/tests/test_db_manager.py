@@ -6,12 +6,13 @@ from ..db.db_manager import DbManager
 # Fixture for setting up the database and manager instance
 @pytest.fixture(scope="module")
 def db_setup():
+
     db_path = './test_student.db'
     picture_directory = './test_student_images'
     db_manager = DbManager(db_path=db_path, picture_directory=picture_directory)
     
     yield db_manager  # This is where the test function will run
-    
+
     # Cleanup code here will run after the test function completes
     if os.path.exists(db_path):
         os.remove(db_path)
@@ -55,16 +56,13 @@ def test_add_students(db_setup):
         ]
     for student_info in test_data:
         db_setup.add_student(student_info)
-    
 
-def test_get_all_students(db_setup):
-    # Your test logic here
     students = db_setup.get_all_students()
-    assert len(students) == 2, "Expected 2 students, but got {}.".format(len(students))
+    assert len(students) == 2, f"Expected 2 students, but got {len(students)}"
     assert students[0]['name'] == 'Alice Smith', "Name mismatch for the first student."
     assert students[0]['university'] == 'University Y', "University mismatch for the first student."
 
-def test_modify_student(db_setup):
+def test_modify_student_with_no_picture(db_setup):
     # Your test logic here
     alice_id = 1  # Assuming this is Alice's ID
     modified_info = {'name': 'Alice Johnson', 'speciality': 'Astrophysics and Cosmology'}
@@ -72,3 +70,13 @@ def test_modify_student(db_setup):
     alice = db_setup.get_student_by_id(alice_id)
     assert alice[1] == 'Alice Johnson', "Name not updated correctly."
     assert alice[5] == 'Astrophysics and Cosmology', "Speciality not updated correctly."
+
+def test_modify_student_with_picture(db_setup):
+    # Your test logic here
+    alice_id = 1  # Assuming this is Alice's ID
+    modified_info = {'name': 'Johnson', 'speciality': 'Informatics','picture_path': "/home/abdelhake/Pictures/Wallpapers/SAVE_20231117_150231.jpg"}
+    db_setup.modify_student(alice_id, modified_info)
+    alice = db_setup.get_student_by_id(alice_id)
+    assert alice[1] == 'Johnson', "Name not updated correctly."
+    assert alice[5] == 'Informatics', "Speciality not updated correctly."
+
