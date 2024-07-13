@@ -130,6 +130,7 @@ class DbManager:
 		student = self.get_student_by_id(student_id)
 		if student is None:
 			return
+		old_name, old_birthday = student[1], student[2]
 
 		set_clause = ", ".join([f"{key} = ?" for key in info.keys() if key != 'picture_path'])
 		sql_query = f"UPDATE student SET {set_clause} WHERE student_id = ?"
@@ -138,17 +139,28 @@ class DbManager:
 		with connection:
 			connection.execute(sql_query, parameters)
 			connection.commit()
-		#TODO: Modify picture name
+
+		new_name = info.get('name', old_name)
+		new_birthday = info.get('birthday', old_birthday)
+		# Update picture name if student info updated
+		if new_name != old_name or new_birthday != old_birthday:
+			old_picture_filename = f"{old_name.replace(' ', '_')}_{old_birthday}.jpg"
+			new_picture_filename = f"{new_name.replace(' ', '_')}_{new_birthday}.jpg"
+			old_picture_path = os.path.join(self.picture_directory, old_picture_filename)
+			new_picture_path = os.path.join(self.picture_directory, new_picture_filename)
+
+			if os.path.exists(old_picture_path):
+				os.rename(old_picture_path, new_picture_path)
+		# Update picture if student add new one
 		picture_path = info.get('picture_path')
 		if picture_path:
-			old_name, old_birthday = student[1], student[2]
 			old_picture_filename = f"{old_name.replace(' ', '_')}_{old_birthday}.jpg"
 			old_picture_path = os.path.join(self.picture_directory, old_picture_filename)
 
 			if os.path.exists(old_picture_path):
 				os.remove(old_picture_path)
 			
-			new_picture_filename = f"{info['name'].replace(' ', '_')}_{info['birthday']}.jpg"
+			new_picture_filename = f"{new_name.replace(' ', '_')}_{new_birthday}.jpg"
 			new_picture_path = os.path.join(self.picture_directory, new_picture_filename)
 			shutil.copy(picture_path, new_picture_path)
 
@@ -170,7 +182,7 @@ class DbManager:
 			# Add logic to create a PDF from student data
 			pass
 
-	def get_student_by_id(self, student_id: int) -> tuple[int, ...] | None:
+	def get_student_by_id(self, student_id: int) -> tuple[int, str] | None:
 		"""
 		Retrieve a student record from the database by their ID.
 
@@ -188,7 +200,7 @@ class DbManager:
 			student = cursor.fetchone()
 		return student
 	
-	def get_all_students(self) -> list[dict[str, str]] | None:
+	def get_all_students(self) -> list[dict[int, str]]:
 		"""
 		Retrieve all student records from the database.
 
@@ -203,7 +215,7 @@ class DbManager:
 			students = cursor.fetchall()
 
 		if students is None:
-			return None
+			return []
 
 		student_list = []
 		for student in students:
