@@ -191,6 +191,23 @@ class DbManager:
 
 		Returns:
 		tuple: A tuple containing the student's information.
+		
+		Example:[
+					0:student_id, \\
+					1:'name', \\
+					2:'birthday', \\
+					3:'birth_place',\\
+					4:'university' ,\\
+					5:'speciality' ,\\
+					6:'domain' ,\\
+					7:'sector' ,\\
+					8:'department' ,\\
+					9:'degree' ,\\
+					10:'preparation_year' ,\\
+					11:'registration_year' ,\\
+					12:'deliberation_date' ,\\
+					13:'note'\\
+				]
 		"""
 		student = None
 		sql_query = "SELECT * FROM student WHERE Student_ID = ?"
@@ -205,8 +222,27 @@ class DbManager:
 		Retrieve all student records from the database.
 
 		Returns:
-		list[dict[str, str]] | None: A list of dictionaries, each containing a student's information,
-									or None if no students are found.
+		list[dict[str, str]]: A list of dictionaries, each containing a student's information,
+									or Empty list if no students are found.
+		Example:\\
+			[\\
+				{\\
+					0:student_id, \\
+					1:'name', \\
+					2:'birthday', \\
+					3:'birth_place',\\
+					4:'university' ,\\
+					5:'speciality' ,\\
+					6:'domain' ,\\
+					7:'sector' ,\\
+					8:'department' ,\\
+					9:'degree' ,\\
+					10:'preparation_year' ,\\
+					11:'registration_year' ,\\
+					12:'deliberation_date' ,\\
+					13:'note'\\
+				}\\
+				]
 		"""
 		sql_query = "SELECT * FROM student"
 		connection = sq.connect(self.db_path)
