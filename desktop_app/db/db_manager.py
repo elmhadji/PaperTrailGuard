@@ -4,7 +4,7 @@ import os
 
 class DbManager:
 	 
-	def __init__ (self, db_path='./student.db', picture_directory='./student_images'):
+	def __init__ (self, db_path='desktop_app/db/student.db', picture_directory='desktop_app/db/student_images'):
 		if not os.path.isfile(db_path):
 			open(db_path ,'w').close()
 		self.picture_directory = picture_directory
