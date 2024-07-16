@@ -25,7 +25,7 @@ class StudentRegisterInfo(Ui_StudentRegisterInfo, QMainWindow):
 		event.accept()
 	
 	def register_student(self):
-
+		#TODO: Add alert if student name already existe
 		if self.name_input.text().strip() == "":
 			Alert("All Field Required", "Name field cannot be empty")
 			return
