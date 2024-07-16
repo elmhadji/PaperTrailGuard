@@ -85,7 +85,7 @@ class DbManager:
 			os.makedirs(self.picture_directory, exist_ok=True)
 			picture_filename = f"{name.replace(' ', '_')}_{birthday}.jpg"
 			destination_path = os.path.join(self.picture_directory, picture_filename)
-			shutil.copy(picture_path, destination_path)
+			shutil.copy2(picture_path, destination_path)
 
 	def delete_student(self, student_id: int) -> None:
 		"""
@@ -162,7 +162,7 @@ class DbManager:
 			
 			new_picture_filename = f"{new_name.replace(' ', '_')}_{new_birthday}.jpg"
 			new_picture_path = os.path.join(self.picture_directory, new_picture_filename)
-			shutil.copy(picture_path, new_picture_path)
+			shutil.copy2(picture_path, new_picture_path)
 
 	def print_student_pdf(self, student_id: int) -> None:
 		"""
