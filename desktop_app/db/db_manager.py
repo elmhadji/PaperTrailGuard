@@ -217,7 +217,7 @@ class DbManager:
 			student = cursor.fetchone()
 		return student
 	
-	def get_all_students(self) -> list[dict[int, str]]:
+	def get_all_students(self) -> list[dict[str, str]]:
 		"""
 		Retrieve all student records from the database.
 
@@ -274,3 +274,15 @@ class DbManager:
 			student_list.append(student_dict)
 
 		return student_list
+	
+	def get_student_profile_path(self, student_name:str, student_birthday:str) ->str:
+		"""
+		Parameter:
+		student_name: student name
+		student_birthday: student birthday in format (dd_MM_yyyy)
+		Returns:
+		Return profile picture path for the student
+		"""
+		picture_filename = f"{student_name.replace(' ', '_')}_{student_birthday}.jpg"
+		picture_path = os.path.join(self.picture_directory, picture_filename)
+		return picture_path
