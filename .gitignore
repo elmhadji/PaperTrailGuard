@@ -4,6 +4,8 @@
 **/__pycache__/
 **/person_pictures/
 **/.pytest_cache/
+**/student_images/
+student.db
 
 # mobile-app files and folder 
 **/node_modules/
