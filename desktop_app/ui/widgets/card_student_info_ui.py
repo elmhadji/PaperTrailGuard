@@ -34,11 +34,22 @@ class Ui_CardStudentInfo(object):
 
         self.verticalLayout.addWidget(self.profile_image_label)
 
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.info_preview_button = QPushButton(CardStudentInfo)
+        self.info_preview_button.setObjectName(u"info_preview_button")
+        self.info_preview_button.setMaximumSize(QSize(35, 16777215))
+
+        self.horizontalLayout_3.addWidget(self.info_preview_button)
+
         self.degree_type_label = QLabel(CardStudentInfo)
         self.degree_type_label.setObjectName(u"degree_type_label")
         self.degree_type_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.verticalLayout.addWidget(self.degree_type_label)
+        self.horizontalLayout_3.addWidget(self.degree_type_label)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_3)
 
         self.verticalLayout.setStretch(0, 1)
 
@@ -120,6 +131,7 @@ class Ui_CardStudentInfo(object):
     def retranslateUi(self, CardStudentInfo):
         CardStudentInfo.setWindowTitle(QCoreApplication.translate("CardStudentInfo", u"Form", None))
         self.profile_image_label.setText(QCoreApplication.translate("CardStudentInfo", u"Profile Image", None))
+        self.info_preview_button.setText("")
         self.degree_type_label.setText(QCoreApplication.translate("CardStudentInfo", u"Degree type", None))
         self.label_3.setText(QCoreApplication.translate("CardStudentInfo", u"Name", None))
         self.name_label.setText("")
