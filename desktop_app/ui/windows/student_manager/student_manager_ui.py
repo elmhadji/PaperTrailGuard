@@ -15,11 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
-    QGridLayout, QHBoxLayout, QLabel, QLineEdit,
-    QListView, QListWidget, QListWidgetItem, QMainWindow,
-    QPushButton, QSizePolicy, QSpacerItem, QStatusBar,
-    QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox,
+    QFrame, QGridLayout, QHBoxLayout, QLabel,
+    QLineEdit, QListView, QListWidget, QListWidgetItem,
+    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
+    QStatusBar, QWidget)
 
 class Ui_StudentManager(object):
     def setupUi(self, StudentManager):
@@ -93,6 +93,11 @@ class Ui_StudentManager(object):
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer_2)
 
+        self.refresh_button = QPushButton(self.centralwidget)
+        self.refresh_button.setObjectName(u"refresh_button")
+
+        self.horizontalLayout_3.addWidget(self.refresh_button)
+
 
         self.gridLayout_2.addLayout(self.horizontalLayout_3, 1, 0, 1, 1)
 
@@ -102,16 +107,23 @@ class Ui_StudentManager(object):
         self.frame.setFrameShadow(QFrame.Shadow.Raised)
         self.gridLayout = QGridLayout(self.frame)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.student_card_info_grid = QListWidget(self.frame)
-        self.student_card_info_grid.setObjectName(u"student_card_info_grid")
-        self.student_card_info_grid.setMovement(QListView.Movement.Snap)
-        self.student_card_info_grid.setFlow(QListView.Flow.LeftToRight)
-        self.student_card_info_grid.setProperty("isWrapping", True)
-        self.student_card_info_grid.setResizeMode(QListView.ResizeMode.Adjust)
-        self.student_card_info_grid.setLayoutMode(QListView.LayoutMode.Batched)
-        self.student_card_info_grid.setViewMode(QListView.ViewMode.ListMode)
+        self.student_card_info_list = QListWidget(self.frame)
+        self.student_card_info_list.setObjectName(u"student_card_info_list")
+        self.student_card_info_list.setAcceptDrops(False)
+        self.student_card_info_list.setProperty("showDropIndicator", True)
+        self.student_card_info_list.setDragEnabled(False)
+        self.student_card_info_list.setDragDropOverwriteMode(False)
+        self.student_card_info_list.setDragDropMode(QAbstractItemView.DragDropMode.NoDragDrop)
+        self.student_card_info_list.setDefaultDropAction(Qt.DropAction.LinkAction)
+        self.student_card_info_list.setMovement(QListView.Movement.Snap)
+        self.student_card_info_list.setFlow(QListView.Flow.LeftToRight)
+        self.student_card_info_list.setProperty("isWrapping", True)
+        self.student_card_info_list.setResizeMode(QListView.ResizeMode.Adjust)
+        self.student_card_info_list.setLayoutMode(QListView.LayoutMode.Batched)
+        self.student_card_info_list.setViewMode(QListView.ViewMode.ListMode)
+        self.student_card_info_list.setItemAlignment(Qt.AlignmentFlag.AlignHCenter)
 
-        self.gridLayout.addWidget(self.student_card_info_grid, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.student_card_info_list, 0, 0, 1, 1)
 
 
         self.gridLayout_2.addWidget(self.frame, 2, 0, 1, 1)
@@ -138,5 +150,6 @@ class Ui_StudentManager(object):
         self.register_button.setText(QCoreApplication.translate("StudentManager", u"Register", None))
         self.selected_all_checkBox.setText("")
         self.delete_selected_button.setText(QCoreApplication.translate("StudentManager", u"Delete Selected", None))
+        self.refresh_button.setText(QCoreApplication.translate("StudentManager", u"Refresh", None))
     # retranslateUi
 

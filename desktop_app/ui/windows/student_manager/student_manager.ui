@@ -115,6 +115,13 @@
         </property>
        </spacer>
       </item>
+      <item>
+       <widget class="QPushButton" name="refresh_button">
+        <property name="text">
+         <string>Refresh</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
     <item row="2" column="0">
@@ -127,7 +134,25 @@
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
-        <widget class="QListWidget" name="student_card_info_grid">
+        <widget class="QListWidget" name="student_card_info_list">
+         <property name="acceptDrops">
+          <bool>false</bool>
+         </property>
+         <property name="showDropIndicator" stdset="0">
+          <bool>true</bool>
+         </property>
+         <property name="dragEnabled">
+          <bool>false</bool>
+         </property>
+         <property name="dragDropOverwriteMode">
+          <bool>false</bool>
+         </property>
+         <property name="dragDropMode">
+          <enum>QAbstractItemView::DragDropMode::NoDragDrop</enum>
+         </property>
+         <property name="defaultDropAction">
+          <enum>Qt::DropAction::LinkAction</enum>
+         </property>
          <property name="movement">
           <enum>QListView::Movement::Snap</enum>
          </property>
@@ -145,6 +170,9 @@
          </property>
          <property name="viewMode">
           <enum>QListView::ViewMode::ListMode</enum>
+         </property>
+         <property name="itemAlignment">
+          <set>Qt::AlignmentFlag::AlignHCenter</set>
          </property>
         </widget>
        </item>

@@ -1,40 +1,63 @@
-from PySide6.QtWidgets import QMainWindow
+from PySide6.QtWidgets import QMainWindow, QListWidgetItem ,QAbstractItemView
 from PySide6.QtCore import Slot
 from .student_manager_ui import Ui_StudentManager
+from db.db_manager import DbManager
+from ui.widgets.card_student_info import CardStudentInfo
 
 class StudentManager(Ui_StudentManager, QMainWindow):
 	def __init__(self):
 		super(StudentManager, self).__init__()
 		self.setupUi(self)
 		self.register_students_window = None
-		self.register_button.clicked.connect(self.show_regiter_student_window)
+		self.student_card_info_list.setDragDropMode(QAbstractItemView.DragDropMode.NoDragDrop)
+		self.register_button.clicked.connect(lambda: self.show_regiter_student_window())
 		self.search_button.clicked.connect(self.search_student)
 		self.delete_selected_button.clicked.connect(self.search_selected_student)
+		self.refresh_button.clicked.connect(self.load_student_from_db)
 		# self.selected_all_checkBox.checkStateChanged.connect()
-	
+		self.load_student_from_db()
 		self.show()
 	
 	def load_student_from_db (self):
-		#TODO: Load studetn from db 
-		# Create card foe each
-		# Load there info 
-		pass
-
-	def register_student(self):
-		pass
+		#FIXME: This function is highly intensive for resource
+		#FIXME: Try later to switch from QListWidget to QListView may solve issuse
+		self.student_card_info_list.clear()
+		database_manager = DbManager()
+		students_info = database_manager.get_all_students()
+		if len(students_info) == 0:
+			print('The DataBase is Empty!!!!')
+			return 
+		
+		for student_info in students_info:
+			student_card_info = CardStudentInfo(student_info)
+			student_card_info.update_student_info.connect(self.show_regiter_student_window)
+			student_card_info.update_student_list.connect(self.load_student_from_db)
+			itemList = QListWidgetItem(self.student_card_info_list)
+			self.student_card_info_list.insertItem(0 ,itemList)
+			itemList.setSizeHint(student_card_info.minimumSizeHint())
+			self.student_card_info_list.setItemWidget(itemList , student_card_info)
+		
+	
 
 	def search_student(self):
+		# name = self.name_input.text().strip()
+		# if name != "":
+		# 	students = DbManager().get_all_students()
 		pass
+			
 
 	def search_selected_student(self):
 		pass
 	
-	def show_regiter_student_window (self):
+	@Slot(dict)
+	def show_regiter_student_window (self, student_info:dict[str,str]=None):
 		from ..student_register_info.student_register_info import StudentRegisterInfo
 		if self.register_students_window is None:
-			self.register_students_window = StudentRegisterInfo()
+			self.register_students_window = StudentRegisterInfo(student_info)
 			self.register_students_window.window_closed.connect(self.register_students_window_closed)
+			
 
 	@Slot()
 	def register_students_window_closed(self):
 		self.register_students_window = None
+		self.load_student_from_db()
