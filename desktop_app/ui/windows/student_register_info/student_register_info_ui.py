@@ -270,7 +270,7 @@ class Ui_StudentRegisterInfo(object):
         self.label_2.setText(QCoreApplication.translate("StudentRegisterInfo", u"Name", None))
         self.name_input.setText("")
         self.label_3.setText(QCoreApplication.translate("StudentRegisterInfo", u"Birthday", None))
-        self.birthday_input.setDisplayFormat(QCoreApplication.translate("StudentRegisterInfo", u"dd/MM/yyyy", None))
+        self.birthday_input.setDisplayFormat(QCoreApplication.translate("StudentRegisterInfo", u"dd_MM_yyyy", None))
         self.label_4.setText(QCoreApplication.translate("StudentRegisterInfo", u"Place of birth", None))
         self.birth_place_input.setText("")
         self.label_6.setText(QCoreApplication.translate("StudentRegisterInfo", u"University", None))

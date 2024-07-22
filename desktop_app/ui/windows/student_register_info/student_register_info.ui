@@ -65,7 +65,7 @@
            <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
           </property>
           <property name="displayFormat">
-           <string>dd/MM/yyyy</string>
+           <string>dd_MM_yyyy</string>
           </property>
          </widget>
         </item>
