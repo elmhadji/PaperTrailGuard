@@ -6,6 +6,7 @@
 **/.pytest_cache/
 **/student_images/
 student.db
+key.bin
 
 # mobile-app files and folder 
 **/node_modules/
