@@ -35,9 +35,8 @@ class CardStudentInfo(Ui_CardStudentInfo ,QWidget):
 		self.degree_type_label.setText(self.info['degree'])
 		profile_picture = DbManager().get_student_profile_path(self.info['name'], self.info['birthday'])
 		pixmap = QPixmap(profile_picture)
-		self.profile_image_label.setPixmap(pixmap.scaled(200, 250, Qt.AspectRatioMode.KeepAspectRatio))
+		self.profile_image_label.setPixmap(pixmap.scaled(150, 200, Qt.AspectRatioMode.KeepAspectRatio))
 
-	
 	def edit_student_info(self):
 		self.update_student_info.emit(self.info)
 
