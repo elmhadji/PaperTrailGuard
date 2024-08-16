@@ -2,6 +2,7 @@ import sqlite3 as sq
 import shutil
 import os
 
+
 class DbManager:
 	 
 	def __init__ (self, db_path='desktop_app/db/student.db', picture_directory='desktop_app/db/student_images'):
@@ -222,27 +223,7 @@ class DbManager:
 		Retrieve all student records from the database.
 
 		Returns:
-		list[dict[str, str]]: A list of dictionaries, each containing a student's information,
-									or Empty list if no students are found.
-		Example:\\
-			[\\
-				{\\
-					0:student_id, \\
-					1:'name', \\
-					2:'birthday', \\
-					3:'birth_place',\\
-					4:'university' ,\\
-					5:'speciality' ,\\
-					6:'domain' ,\\
-					7:'sector' ,\\
-					8:'department' ,\\
-					9:'degree' ,\\
-					10:'preparation_year' ,\\
-					11:'registration_year' ,\\
-					12:'deliberation_date' ,\\
-					13:'note'\\
-				}\\
-				]
+			student_list (list[dict[str, str]]): A list of dictionaries, each containing a student's information, or Empty list if no students are found
 		"""
 		sql_query = "SELECT * FROM student"
 		connection = sq.connect(self.db_path)
@@ -275,13 +256,62 @@ class DbManager:
 
 		return student_list
 	
+	def get_student_by_degree(self, degree: int) -> list[dict[str, str]]:
+		"""
+		Retrieve all student records from the database by their degree.
+
+		Parameters:
+			degree (int): The degree index of the students to retrieve.
+
+		Returns :
+			Filtred list of dictionaries by degree, each containing a student's information, or Empty list if no students are found.
+		"""
+		match degree:
+			case 1:
+				degree = "Bachelor"
+			case 2:
+				degree = "Master"
+			case _ :
+				return []
+
+		sql_query = "SELECT * FROM student WHERE degree = ?"
+		connection = sq.connect(self.db_path)
+		with connection:
+			cursor = connection.execute(sql_query, (degree,))
+			students = cursor.fetchall()
+
+		if students is None:
+			return []
+
+		student_list = []
+		for student in students:
+			student_dict = {
+				'student_id': student[0],
+				'name': student[1],
+				'birthday': student[2],
+				'birth_place': student[3],
+				'university': student[4],
+				'speciality': student[5],
+				'domain': student[6],
+				'sector': student[7],
+				'department': student[8],
+				'degree': student[9],
+				'preparation_year': student[10],
+				'registration_year': student[11],
+				'deliberation_date': student[12],
+				'note': student[13]
+			}
+			student_list.append(student_dict)
+
+		return student_list
+	
 	def get_student_profile_path(self, student_name:str, student_birthday:str) ->str:
 		"""
-		Parameter:
-		student_name: student name
-		student_birthday: student birthday in format (dd_MM_yyyy)
+		Parameters :
+			student_name (str) : student name
+			student_birthday (str): student birthday in format (dd_MM_yyyy)
 		Returns:
-		Return profile picture path for the student
+			picture_path ):profile picture path for the student
 		"""
 		picture_filename = f"{student_name.replace(' ', '_')}_{student_birthday}.jpg"
 		picture_path = os.path.join(self.picture_directory, picture_filename)
