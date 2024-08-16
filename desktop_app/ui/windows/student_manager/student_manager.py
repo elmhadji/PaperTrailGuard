@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QMainWindow, QListWidgetItem ,QAbstractItemView
 from PySide6.QtCore import Slot
 from .student_manager_ui import Ui_StudentManager
 from db.db_manager import DbManager
-from ui.widgets.card_student_info import CardStudentInfo
+from ui.widgets.card_student_info.card_student_info import CardStudentInfo
 
 class StudentManager(Ui_StudentManager, QMainWindow):
 	def __init__(self):
@@ -15,12 +15,11 @@ class StudentManager(Ui_StudentManager, QMainWindow):
 		self.delete_selected_button.clicked.connect(self.search_selected_student)
 		self.refresh_button.clicked.connect(self.load_student_from_db)
 		# self.selected_all_checkBox.checkStateChanged.connect()
+		self.degree_combo_box.currentIndexChanged.connect(lambda index: self.filter_student_by_degree(index))
 		self.load_student_from_db()
 		self.show()
 	
 	def load_student_from_db (self):
-		#FIXME: This function is highly intensive for resource
-		#FIXME: Try later to switch from QListWidget to QListView may solve issuse
 		self.student_card_info_list.clear()
 		database_manager = DbManager()
 		students_info = database_manager.get_all_students()
@@ -28,6 +27,13 @@ class StudentManager(Ui_StudentManager, QMainWindow):
 			print('The DataBase is Empty!!!!')
 			return 
 		
+		self.set_list_widget(students_info)
+	
+	def set_list_widget (self, students_info:list):
+		#FIXME: This function is highly intensive for resource
+		#FIXME: Try later to switch from QListWidget to QListView may solve issuse
+		if len(students_info) == 0:
+			return
 		for student_info in students_info:
 			student_card_info = CardStudentInfo(student_info)
 			student_card_info.update_student_info.connect(self.show_regiter_student_window)
@@ -36,7 +42,6 @@ class StudentManager(Ui_StudentManager, QMainWindow):
 			self.student_card_info_list.insertItem(0 ,itemList)
 			itemList.setSizeHint(student_card_info.minimumSizeHint())
 			self.student_card_info_list.setItemWidget(itemList , student_card_info)
-		
 	
 
 	def search_student(self):
@@ -48,6 +53,16 @@ class StudentManager(Ui_StudentManager, QMainWindow):
 
 	def search_selected_student(self):
 		pass
+
+	def filter_student_by_degree(self ,degree:int = 0):
+		print('degree is :',degree)
+		if degree != 0:
+			students_info = DbManager().get_student_by_degree(degree)
+			print('students_info :',students_info)
+			self.student_card_info_list.clear()
+			self.set_list_widget(students_info)
+		else:
+			self.load_student_from_db()
 	
 	@Slot(dict)
 	def show_regiter_student_window (self, student_info:dict[str,str]=None):
@@ -56,7 +71,6 @@ class StudentManager(Ui_StudentManager, QMainWindow):
 			self.register_students_window = StudentRegisterInfo(student_info)
 			self.register_students_window.window_closed.connect(self.register_students_window_closed)
 			
-
 	@Slot()
 	def register_students_window_closed(self):
 		self.register_students_window = None
