@@ -148,10 +148,13 @@
           <bool>false</bool>
          </property>
          <property name="dragDropMode">
-          <enum>QAbstractItemView::DragDropMode::NoDragDrop</enum>
+          <enum>QAbstractItemView::DragDropMode::DragOnly</enum>
          </property>
          <property name="defaultDropAction">
           <enum>Qt::DropAction::LinkAction</enum>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
          </property>
          <property name="movement">
           <enum>QListView::Movement::Snap</enum>
@@ -170,6 +173,9 @@
          </property>
          <property name="viewMode">
           <enum>QListView::ViewMode::ListMode</enum>
+         </property>
+         <property name="selectionRectVisible">
+          <bool>true</bool>
          </property>
          <property name="itemAlignment">
           <set>Qt::AlignmentFlag::AlignHCenter</set>
