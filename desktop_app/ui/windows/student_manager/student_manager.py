@@ -12,8 +12,8 @@ class StudentManager(Ui_StudentManager, QMainWindow):
 		self.student_card_info_list.setDragDropMode(QAbstractItemView.DragDropMode.NoDragDrop)
 		self.register_button.clicked.connect(lambda: self.show_regiter_student_window())
 		self.search_button.clicked.connect(self.search_student)
-		self.delete_selected_button.clicked.connect(self.search_selected_student)
-		self.refresh_button.clicked.connect(self.load_student_from_db)
+		self.delete_selected_button.clicked.connect(self.delete_selected_student)
+		self.refresh_button.clicked.connect(self.refresh_student_list)
 		# self.selected_all_checkBox.checkStateChanged.connect()
 		self.degree_combo_box.currentIndexChanged.connect(lambda index: self.filter_student_by_degree(index))
 		self.load_student_from_db()
@@ -26,8 +26,11 @@ class StudentManager(Ui_StudentManager, QMainWindow):
 		if len(students_info) == 0:
 			print('The DataBase is Empty!!!!')
 			return 
-		
 		self.set_list_widget(students_info)
+	
+	def refresh_student_list (self):
+		self.name_input.setText("")
+		self.degree_combo_box.setCurrentIndex(0)
 	
 	def set_list_widget (self, students_info:list):
 		#FIXME: This function is highly intensive for resource
@@ -45,23 +48,29 @@ class StudentManager(Ui_StudentManager, QMainWindow):
 	
 
 	def search_student(self):
-		# name = self.name_input.text().strip()
-		# if name != "":
-		# 	students = DbManager().get_all_students()
-		pass
+		name = self.name_input.text().strip()
+		if name != "":
+			degree_index = self.degree_combo_box.currentIndex()
+			students = DbManager().get_student_by_name_and_degree(name, degree_index)
+			self.student_card_info_list.clear()
+			self.set_list_widget(students)
+			
 			
 
-	def search_selected_student(self):
+	def delete_selected_student(self):
 		pass
 
 	def filter_student_by_degree(self ,degree:int = 0):
-		print('degree is :',degree)
-		if degree != 0:
+		name = self.name_input.text().strip()
+		if name != "":
+			return
+		elif degree != 0:
+			# GET STUDENT BY DEGREE
 			students_info = DbManager().get_student_by_degree(degree)
-			print('students_info :',students_info)
 			self.student_card_info_list.clear()
 			self.set_list_widget(students_info)
 		else:
+			# GET ALL STUDENT
 			self.load_student_from_db()
 	
 	@Slot(dict)
