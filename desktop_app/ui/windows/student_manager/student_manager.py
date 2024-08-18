@@ -41,6 +41,7 @@ class StudentManager(Ui_StudentManager, QMainWindow):
 			student_card_info = CardStudentInfo(student_info)
 			student_card_info.update_student_info.connect(self.show_regiter_student_window)
 			student_card_info.update_student_list.connect(self.load_student_from_db)
+			student_card_info.show_student_preview_info.connect(self.show_student_preview_info)
 			itemList = QListWidgetItem(self.student_card_info_list)
 			self.student_card_info_list.insertItem(0 ,itemList)
 			itemList.setSizeHint(student_card_info.minimumSizeHint())
@@ -92,6 +93,12 @@ class StudentManager(Ui_StudentManager, QMainWindow):
 			# GET ALL STUDENT
 			self.load_student_from_db()
 	
+	@Slot(dict)
+	def show_student_preview_info(self, student_info:dict[str,str]):
+		from ..student_preview_info.student_preview_info import StudentPreviewInfo
+		self.student_preview_info_window = StudentPreviewInfo(student_info)
+		self.student_preview_info_window.show()
+
 	@Slot(dict)
 	def show_regiter_student_window (self, student_info:dict[str,str]=None):
 		from ..student_register_info.student_register_info import StudentRegisterInfo
