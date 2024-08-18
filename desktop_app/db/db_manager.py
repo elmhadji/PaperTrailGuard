@@ -304,6 +304,59 @@ class DbManager:
 			student_list.append(student_dict)
 
 		return student_list
+
+	def get_student_by_name_and_degree(self, name: str, degree_index: int) -> list[dict[str, str]]:
+		"""
+		Retrieve all student records from the database by their name and degree.
+
+		Parameters:
+			name (str): The name of the students to retrieve.
+			degree_index (int): The index of the degree (0 for All, 1 for Bachelor, 2 for Master).
+
+		Returns :
+			Filtred list of dictionaries by name and degree, each containing a student's information, or Empty list if no students are found.
+		"""
+		if degree_index == 0:
+			# All degrees
+			sql_query = "SELECT * FROM student WHERE name LIKE ?"
+		elif degree_index == 1:
+			# Bachelor degree
+			sql_query = "SELECT * FROM student WHERE name LIKE ? AND degree = 'Bachelor'"
+		elif degree_index == 2:
+			# Master degree
+			sql_query = "SELECT * FROM student WHERE name LIKE ? AND degree = 'Master'"
+		else:
+			raise ValueError("Invalid degree index. Must be 0, 1, or 2.")
+
+		connection = sq.connect(self.db_path)
+		with connection:
+			cursor = connection.execute(sql_query, (f"%{name}%",))
+			students = cursor.fetchall()
+
+		if students is None:
+			return []
+
+		student_list = []
+		for student in students:
+			student_dict = {
+				'student_id': student[0],
+				'name': student[1],
+				'birthday': student[2],
+				'birth_place': student[3],
+				'university': student[4],
+				'speciality': student[5],
+				'domain': student[6],
+				'sector': student[7],
+				'department': student[8],
+				'degree': student[9],
+				'preparation_year': student[10],
+				'registration_year': student[11],
+				'deliberation_date': student[12],
+				'note': student[13]
+			}
+			student_list.append(student_dict)
+
+		return student_list
 	
 	def get_student_profile_path(self, student_name:str, student_birthday:str) ->str:
 		"""
