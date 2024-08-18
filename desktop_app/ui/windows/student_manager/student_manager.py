@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QListWidgetItem ,QAbstractItemView
+from PySide6.QtWidgets import QMainWindow, QListWidgetItem ,QAbstractItemView, QDialog, QMessageBox
 from PySide6.QtCore import Slot
 from .student_manager_ui import Ui_StudentManager
 from db.db_manager import DbManager
@@ -14,7 +14,7 @@ class StudentManager(Ui_StudentManager, QMainWindow):
 		self.search_button.clicked.connect(self.search_student)
 		self.delete_selected_button.clicked.connect(self.delete_selected_student)
 		self.refresh_button.clicked.connect(self.refresh_student_list)
-		# self.selected_all_checkBox.checkStateChanged.connect()
+		self.selected_all_checkBox.stateChanged.connect(self.select_all_student)
 		self.degree_combo_box.currentIndexChanged.connect(lambda index: self.filter_student_by_degree(index))
 		self.load_student_from_db()
 		self.show()
@@ -55,10 +55,29 @@ class StudentManager(Ui_StudentManager, QMainWindow):
 			self.student_card_info_list.clear()
 			self.set_list_widget(students)
 			
-			
+	def select_all_student(self):
+		for item_index in range(self.student_card_info_list.count()):
+			item = self.student_card_info_list.item(item_index)
+			item.setSelected(True)
 
 	def delete_selected_student(self):
-		pass
+		dialog = QDialog()
+		dialog.setWindowTitle("Confirm Deletion")
+
+		message = QMessageBox(dialog)
+		message.setIcon(QMessageBox.Icon.Question)
+		message.setText("Are you sure you want to delete all selected student?")
+		message.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+		message.setDefaultButton(QMessageBox.StandardButton.No)
+
+		result = message.exec_()
+		if result == QMessageBox.StandardButton.Yes:
+			for item_index in range(self.student_card_info_list.count()):
+				item = self.student_card_info_list.item(item_index)
+				if item.isSelected():
+					card_student_info:CardStudentInfo = self.student_card_info_list.itemWidget(item)
+					DbManager().delete_student(int(card_student_info.info["student_id"]))
+			self.load_student_from_db()
 
 	def filter_student_by_degree(self ,degree:int = 0):
 		name = self.name_input.text().strip()
