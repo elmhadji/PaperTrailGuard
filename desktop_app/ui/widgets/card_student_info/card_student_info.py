@@ -16,7 +16,8 @@ import os
 
 class CardStudentInfo(Ui_CardStudentInfo ,QWidget):
 	update_student_info = Signal(dict)
-	update_student_list = Signal()	
+	update_student_list = Signal()
+	show_student_preview_info = Signal(dict)
 
 	def __init__(self, info:dict[str,str]):
 		super(CardStudentInfo, self).__init__()
@@ -26,6 +27,7 @@ class CardStudentInfo(Ui_CardStudentInfo ,QWidget):
 		self.delete_button.clicked.connect(self.delete_student_info)
 		self.edit_button.clicked.connect(self.edit_student_info)
 		self.print_pdf_button.clicked.connect(self.print_student_info)
+		self.info_preview_button.clicked.connect(lambda: self.show_student_preview_info.emit(self.info))
 
 	def load_card_info(self):
 		self.name_label.setText(self.info['name'])
