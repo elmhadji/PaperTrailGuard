@@ -13,12 +13,41 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#StudentManager {
+	font: 12pt &quot;Noto Sans&quot;;
+}
+
+#search_button, #register_button, #delete_selected_button, #refresh_button, QLineEdit{
+	border: 1px solid  rgb(0, 94, 193);
+	border-radius: 10px;
+	padding: 10px;
+}
+#degree_combo_box {
+	padding: 5px;
+}
+
+#search_button, #register_button, #delete_selected_button, #refresh_button {
+	background-color: rgb(0, 94, 193);
+	color: rgb(255, 255, 255);
+}
+
+#search_button::hover, #register_button::hover, #refresh_button::hover {
+	background-color: #0066cc;
+}
+
+#delete_selected_button::hover {
+	background-color: red;
+	border: 1px solid  red;
+}
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,1,1">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0,2,0">
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
@@ -58,7 +87,11 @@
         <item>
          <widget class="QPushButton" name="search_button">
           <property name="text">
-           <string>search</string>
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="student_manager.qrc">
+            <normaloff>:/Icons/assets/icons/magnifying-glass-solid.svg</normaloff>:/Icons/assets/icons/magnifying-glass-solid.svg</iconset>
           </property>
          </widget>
         </item>
@@ -82,16 +115,23 @@
         <property name="text">
          <string>Register</string>
         </property>
+        <property name="icon">
+         <iconset resource="student_manager.qrc">
+          <normaloff>:/Icons/assets/icons/user-plus-solid.svg</normaloff>:/Icons/assets/icons/user-plus-solid.svg</iconset>
+        </property>
        </widget>
       </item>
      </layout>
     </item>
     <item row="1" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1,3,1">
       <item>
        <widget class="QCheckBox" name="selected_all_checkBox">
         <property name="text">
          <string/>
+        </property>
+        <property name="tristate">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -99,6 +139,10 @@
        <widget class="QPushButton" name="delete_selected_button">
         <property name="text">
          <string>Delete Selected</string>
+        </property>
+        <property name="icon">
+         <iconset resource="student_manager.qrc">
+          <normaloff>:/Icons/assets/icons/trash-solid-white.svg</normaloff>:/Icons/assets/icons/trash-solid-white.svg</iconset>
         </property>
        </widget>
       </item>
@@ -120,6 +164,10 @@
         <property name="text">
          <string>Refresh</string>
         </property>
+        <property name="icon">
+         <iconset resource="student_manager.qrc">
+          <normaloff>:/Icons/assets/icons/rotate-solid.svg</normaloff>:/Icons/assets/icons/rotate-solid.svg</iconset>
+        </property>
        </widget>
       </item>
      </layout>
@@ -138,6 +186,15 @@
          <property name="acceptDrops">
           <bool>false</bool>
          </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Sunken</enum>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+         </property>
          <property name="showDropIndicator" stdset="0">
           <bool>true</bool>
          </property>
@@ -148,13 +205,22 @@
           <bool>false</bool>
          </property>
          <property name="dragDropMode">
-          <enum>QAbstractItemView::DragDropMode::DragOnly</enum>
+          <enum>QAbstractItemView::DragDropMode::NoDragDrop</enum>
          </property>
          <property name="defaultDropAction">
           <enum>Qt::DropAction::LinkAction</enum>
          </property>
+         <property name="alternatingRowColors">
+          <bool>false</bool>
+         </property>
          <property name="selectionMode">
           <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
+         </property>
+         <property name="textElideMode">
+          <enum>Qt::TextElideMode::ElideLeft</enum>
+         </property>
+         <property name="horizontalScrollMode">
+          <enum>QAbstractItemView::ScrollMode::ScrollPerItem</enum>
          </property>
          <property name="movement">
           <enum>QListView::Movement::Snap</enum>
@@ -174,11 +240,14 @@
          <property name="viewMode">
           <enum>QListView::ViewMode::ListMode</enum>
          </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
          <property name="selectionRectVisible">
           <bool>true</bool>
          </property>
          <property name="itemAlignment">
-          <set>Qt::AlignmentFlag::AlignHCenter</set>
+          <set>Qt::AlignmentFlag::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -189,6 +258,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="student_manager.qrc"/>
+ </resources>
  <connections/>
 </ui>
