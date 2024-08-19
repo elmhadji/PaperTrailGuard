@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>../../../assets/icons/circle-info-solid.svg</file>
+    <file>../../../assets/icons/file-pdf-solid.svg</file>
+    <file>../../../assets/icons/pencil-solid.svg</file>
+    <file>../../../assets/icons/trash-solid.svg</file>
+  </qresource>
+  <qresource prefix="images">
+    <file>../../../assets/images/default_profile.png</file>
+  </qresource>
+</RCC>
