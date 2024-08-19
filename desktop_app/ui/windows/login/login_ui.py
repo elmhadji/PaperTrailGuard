@@ -23,7 +23,40 @@ class Ui_Login(object):
     def setupUi(self, Login):
         if not Login.objectName():
             Login.setObjectName(u"Login")
-        Login.resize(367, 356)
+        Login.resize(380, 500)
+        Login.setMinimumSize(QSize(380, 500))
+        Login.setMaximumSize(QSize(380, 500))
+        Login.setStyleSheet(u"#Login {\n"
+"	font: 12pt \"Noto Sans\";\n"
+"}\n"
+"\n"
+"#title {\n"
+"	font: 700 30pt \"Noto Sans\";\n"
+"	padding: 35px\n"
+"}\n"
+"\n"
+"#username_input, #password_input, #login_button {\n"
+"	border: 1px solid  rgb(0, 94, 193);\n"
+"	border-radius: 10px;\n"
+"	padding: 10px;\n"
+"	selection-color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"#login_button {\n"
+"	background-color: rgb(0, 94, 193);\n"
+"	color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"#login_button::hover {\n"
+"	\n"
+"	background-color: #0066cc;\n"
+"	color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"#forget_password_link {\n"
+"	color: rgb(0, 94, 193);\n"
+"	border: none;\n"
+"}")
         self.centralwidget = QWidget(Login)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
@@ -34,10 +67,10 @@ class Ui_Login(object):
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer)
 
-        self.label = QLabel(self.centralwidget)
-        self.label.setObjectName(u"label")
+        self.title = QLabel(self.centralwidget)
+        self.title.setObjectName(u"title")
 
-        self.horizontalLayout_2.addWidget(self.label)
+        self.horizontalLayout_2.addWidget(self.title)
 
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
@@ -75,6 +108,7 @@ class Ui_Login(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.forget_password_link = QPushButton(self.centralwidget)
         self.forget_password_link.setObjectName(u"forget_password_link")
+        self.forget_password_link.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout.addWidget(self.forget_password_link)
 
@@ -94,6 +128,9 @@ class Ui_Login(object):
         self.statusBar = QStatusBar(Login)
         self.statusBar.setObjectName(u"statusBar")
         Login.setStatusBar(self.statusBar)
+        QWidget.setTabOrder(self.username_input, self.password_input)
+        QWidget.setTabOrder(self.password_input, self.login_button)
+        QWidget.setTabOrder(self.login_button, self.forget_password_link)
 
         self.retranslateUi(Login)
 
@@ -102,7 +139,7 @@ class Ui_Login(object):
 
     def retranslateUi(self, Login):
         Login.setWindowTitle(QCoreApplication.translate("Login", u"MainWindow", None))
-        self.label.setText(QCoreApplication.translate("Login", u"LOGIN", None))
+        self.title.setText(QCoreApplication.translate("Login", u"LOGIN", None))
         self.username_label.setText(QCoreApplication.translate("Login", u"username", None))
         self.password_label.setText(QCoreApplication.translate("Login", u"Password", None))
         self.forget_password_link.setText(QCoreApplication.translate("Login", u"forget password ?", None))
