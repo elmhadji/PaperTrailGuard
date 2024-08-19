@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="Images">
+    <file>../../../assets/images/default_profile.png</file>
+  </qresource>
+</RCC>
