@@ -23,7 +23,34 @@ class Ui_ForgetPassowrd(object):
     def setupUi(self, ForgetPassowrd):
         if not ForgetPassowrd.objectName():
             ForgetPassowrd.setObjectName(u"ForgetPassowrd")
-        ForgetPassowrd.resize(367, 356)
+        ForgetPassowrd.resize(380, 500)
+        ForgetPassowrd.setMinimumSize(QSize(380, 500))
+        ForgetPassowrd.setMaximumSize(QSize(380, 500))
+        ForgetPassowrd.setStyleSheet(u"#ForgetPassword {\n"
+"	font: 12pt \"Noto Sans\";\n"
+"}\n"
+"\n"
+"#title {\n"
+"	font: 700 25pt \"Noto Sans\";\n"
+"	padding: 35px\n"
+"}\n"
+"\n"
+"#username_input, #password_input, #return_button {\n"
+"	border: 1px solid  rgb(0, 94, 193);\n"
+"	border-radius: 10px;\n"
+"	padding: 10px;\n"
+"	selection-color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"#return_button {\n"
+"	background-color: rgb(0, 94, 193);\n"
+"	color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"#return_button::hover {\n"
+"	background-color: #0066cc;\n"
+"	color: rgb(255, 255, 255);\n"
+"}")
         self.centralwidget = QWidget(ForgetPassowrd)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
@@ -34,10 +61,10 @@ class Ui_ForgetPassowrd(object):
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer)
 
-        self.label = QLabel(self.centralwidget)
-        self.label.setObjectName(u"label")
+        self.title = QLabel(self.centralwidget)
+        self.title.setObjectName(u"title")
 
-        self.horizontalLayout_2.addWidget(self.label)
+        self.horizontalLayout_2.addWidget(self.title)
 
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
@@ -53,26 +80,26 @@ class Ui_ForgetPassowrd(object):
 
         self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label_2)
 
-        self.lineEdit = QLineEdit(self.centralwidget)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setEnabled(True)
-        self.lineEdit.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.lineEdit.setReadOnly(True)
+        self.username_input = QLineEdit(self.centralwidget)
+        self.username_input.setObjectName(u"username_input")
+        self.username_input.setEnabled(True)
+        self.username_input.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.username_input.setReadOnly(True)
 
-        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.lineEdit)
+        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.username_input)
 
         self.label_3 = QLabel(self.centralwidget)
         self.label_3.setObjectName(u"label_3")
 
         self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_3)
 
-        self.lineEdit_2 = QLineEdit(self.centralwidget)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
-        self.lineEdit_2.setEnabled(True)
-        self.lineEdit_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.lineEdit_2.setReadOnly(True)
+        self.password_input = QLineEdit(self.centralwidget)
+        self.password_input.setObjectName(u"password_input")
+        self.password_input.setEnabled(True)
+        self.password_input.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.password_input.setReadOnly(True)
 
-        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.lineEdit_2)
+        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.password_input)
 
 
         self.verticalLayout.addLayout(self.formLayout)
@@ -88,6 +115,8 @@ class Ui_ForgetPassowrd(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer_3)
 
+        self.horizontalLayout.setStretch(0, 1)
+        self.horizontalLayout.setStretch(1, 2)
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
@@ -107,11 +136,11 @@ class Ui_ForgetPassowrd(object):
 
     def retranslateUi(self, ForgetPassowrd):
         ForgetPassowrd.setWindowTitle(QCoreApplication.translate("ForgetPassowrd", u"MainWindow", None))
-        self.label.setText(QCoreApplication.translate("ForgetPassowrd", u"Forget Password ", None))
+        self.title.setText(QCoreApplication.translate("ForgetPassowrd", u"Forget Password ", None))
         self.label_2.setText(QCoreApplication.translate("ForgetPassowrd", u"username", None))
-        self.lineEdit.setText(QCoreApplication.translate("ForgetPassowrd", u"Admin", None))
+        self.username_input.setText(QCoreApplication.translate("ForgetPassowrd", u"admin", None))
         self.label_3.setText(QCoreApplication.translate("ForgetPassowrd", u"Password", None))
-        self.lineEdit_2.setText(QCoreApplication.translate("ForgetPassowrd", u"Admin", None))
+        self.password_input.setText(QCoreApplication.translate("ForgetPassowrd", u"admin", None))
         self.return_button.setText(QCoreApplication.translate("ForgetPassowrd", u"Return", None))
     # retranslateUi
 
