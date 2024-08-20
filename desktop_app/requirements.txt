@@ -1,5 +1,7 @@
 PySide6 == 6.7.1
-python-bidi
-fpdf
-arabic_reshaper
-pycryptodome
+python-bidi == 0.5.0
+fpdf == 1.7.2
+arabic_reshaper == 3.0.0
+crypto == 1.4.1
+pycryptodome == 3.20.0
+qrcode == 7.4.2
