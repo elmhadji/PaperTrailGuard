@@ -1,7 +1,6 @@
 from PySide6.QtWidgets import QMainWindow, QFileDialog
 from PySide6.QtCore import Signal, QDate, QStandardPaths
 from PySide6.QtGui import QPixmap, Qt
-from sympy import true
 from .student_register_info_ui import Ui_StudentRegisterInfo
 from ui.dialogs.alert import Alert 
 from db.db_manager import DbManager
@@ -84,8 +83,6 @@ class StudentRegisterInfo(Ui_StudentRegisterInfo, QMainWindow):
 		if self.picture_path is None:
 			Alert("Picture Required", "Picture cannot be empty")
 			return False
-		#TODO: Add alert if student name already existe
-		
 		
 		return True
 	
@@ -149,8 +146,8 @@ class StudentRegisterInfo(Ui_StudentRegisterInfo, QMainWindow):
 		self.delibration_year_spinbox.setValue(QDate().year())
 		self.note_input.setText("")
 		self.picture_path = None
-		#TODO: Load default profile picture
-		self.student_picture.setText("Profile")
+		pixmap = QPixmap("desktop_app/assets/images/default_profile.png")
+		self.student_picture.setPixmap(pixmap.scaled(200, 200, Qt.AspectRatioMode.KeepAspectRatio))
 
 	def select_student_picture(self):
 		file_path = QFileDialog.getOpenFileName(
