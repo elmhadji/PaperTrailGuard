@@ -2,12 +2,10 @@
 
 # desktop files and folder
 **/__pycache__/
-**/person_pictures/
 **/.pytest_cache/
-**/student_images/
-student.db
 key.bin
 Diplom.pdf
+*_rc.py
 
 # mobile-app files and folder 
 **/node_modules/
