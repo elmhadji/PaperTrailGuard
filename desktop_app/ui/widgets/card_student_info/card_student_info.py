@@ -86,7 +86,7 @@ Speciality: {self.info['speciality']}
 		pdf = FPDF(orientation='l', unit='mm', format="A4")
 		pdf.add_page()
 		pdf.set_xy(90, 10)
-		pdf.image(name='desktop_app/assets/logo.png', link='', type='')
+		pdf.image(name='desktop_app/assets/images/logo.png', link='', type='')
 		pdf.set_xy(40, 0)
 		pdf.add_font('DejaVu', '', 'desktop_app/assets/dejavu-sans/ttf/DejaVuSansCondensed.ttf', uni=True)
 		pdf.set_font('DejaVu', '', 20)
