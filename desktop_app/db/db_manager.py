@@ -165,24 +165,6 @@ class DbManager:
 			new_picture_path = os.path.join(self.picture_directory, new_picture_filename)
 			shutil.copy2(picture_path, new_picture_path)
 
-	def print_student_pdf(self, student_id: int) -> None:
-		"""
-		Generate a PDF containing the student's information.
-
-		Parameters:
-		student_id (int): The unique ID of the student to print.
-
-		Returns:
-		None: This function does not return anything.
-		"""
-		#TODO: Replace this function to the card_student_info widget
-		# Placeholder for PDF generation logic
-		# You can use libraries such as FPDF, ReportLab, or any other to generate PDFs.
-		student = self.get_student_by_id(student_id)
-		if student:
-			# Add logic to create a PDF from student data
-			pass
-
 	def get_student_by_id(self, student_id: int) -> tuple[int, str] | None:
 		"""
 		Retrieve a student record from the database by their ID.
